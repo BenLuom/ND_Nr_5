@@ -1,6 +1,9 @@
 package com.example.namu_darbas_nr_5_benas_luomanas.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
+import org.hibernate.validator.constraints.Length;
+
 import java.util.List;
 
 @Entity
@@ -10,18 +13,26 @@ public class Clients {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotEmpty(message = "Laukelis neturi būti tuščias")
+    @Length(min = 3, max = 20, message = "Vardas turi būti netrumpesnis už 3 ir neilgesnis už 20 simbolių")
     @Column
     private String name;
 
+    @NotEmpty(message = "Laukelis neturi būti tuščias")
+    @Length(min = 3, max = 25, message = "Pavardė turi būti netrumpesnė už 3 ir neilgesnė už 25 simbolius")
     @Column
     private String surname;
 
+    @NotEmpty(message = "Laukelis neturi būti tuščias")
+    @Email(message = "Turi būti tinkamas elektroninio pašto adresas")
     @Column
     private String email;
 
+    @Length(min = 0, max = 15, message = "Telefono numeris turi būti neilgesnis už 15 simbolių")
     @Column
     private String phone;
 
+    @NotNull(message = "Laukelis neturi būti tuščias")
     @Column
     private Integer personal_number;
 

@@ -2,13 +2,12 @@ package com.example.namu_darbas_nr_5_benas_luomanas.controllers;
 
 import com.example.namu_darbas_nr_5_benas_luomanas.entities.Clients;
 import com.example.namu_darbas_nr_5_benas_luomanas.repositories.ClientsRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,20 +24,22 @@ public class ClientsController {
     }
 
     @GetMapping("/new")
-    public String newClients(){
+    public String newClients(Model model){
+        model.addAttribute("clients", new Clients());
         return "clients_new";
     }
 
     @PostMapping("/new")
     public String storeClients(
-            @RequestParam("name") String name,
-            @RequestParam("surname") String surname,
-            @RequestParam("email") String email,
-            @RequestParam("phone") String phone,
-            @RequestParam("personal_number") Integer personal_number
+            @Valid
+            @ModelAttribute
+            Clients clients,
+            BindingResult result
     ){
-        Clients g=new Clients(name, surname, email, phone, personal_number);
-        clientsRepository.save(g);
+        if (result.hasErrors()){
+            return "clients_new";
+        }
+        clientsRepository.save(clients);
         return "redirect:/";
     }
 
@@ -54,20 +55,16 @@ public class ClientsController {
 
     @PostMapping("/update/{id}")
     public String save(
-            @PathVariable("id") Integer id,
-            @RequestParam("name") String name,
-            @RequestParam("surname") String surname,
-            @RequestParam("email") String email,
-            @RequestParam("phone") String phone,
-            @RequestParam("personal_number") Integer personal_number
+            @Valid
+            @ModelAttribute
+            Clients clients,
+            BindingResult result
     ){
-        Clients g=clientsRepository.getReferenceById(id);
-        g.setName(name);
-        g.setSurname(surname);
-        g.setEmail(email);
-        g.setPhone(phone);
-        g.setPersonal_number(personal_number);
-        clientsRepository.save(g);
+        if (result.hasErrors()){
+            return "clients_update";
+        }
+        clientsRepository.save(clients);
+
 
         return "redirect:/";
     }

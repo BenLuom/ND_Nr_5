@@ -18,23 +18,23 @@
                   <form method="post" th:action="'/update/'+${clients.id}">
                       <div class="mb-3">
                           <label class="form-label">Vardas</label>
-                          <input type="text" class="form-control" name="name" th:value="${clients.name}">
+                          <input type="text" class="form-control" name="name" th:value="${clients.name}" required>
                       </div>
                       <div class="mb-3">
                           <label class="form-label">Pavardė</label>
-                          <input type="text" class="form-control" name="surname" th:value="${clients.surname}">
+                          <input type="text" class="form-control" name="surname" th:value="${clients.surname}" required>
                       </div>
                       <div class="mb-3">
                           <label class="form-label">Elektroninis paštas</label>
-                          <input type="text" class="form-control" name="email" th:value="${clients.email}">
+                          <input type="text" class="form-control" name="email" th:value="${clients.email}" required>
                       </div>
                       <div class="mb-3">
                           <label class="form-label">Telefono numeris</label>
-                          <input type="text" class="form-control" name="phone" th:value="${clients.phone}">
+                          <input type="text" class="form-control" name="phone" th:value="${clients.phone}" required>
                       </div>
                       <div class="mb-3">
                           <label class="form-label">Asmens kodas</label>
-                          <input type="text" class="form-control" name="personal_number" th:value="${clients.personal_number}">
+                          <input type="text" class="form-control" name="personal_number" th:value="${clients.personal_number}" required>
                       </div>
                       <div class="row d-flex justify-content-center">
                           <button class="btn btn-dark mb-3">Išsaugoti</button>
