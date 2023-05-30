@@ -36,6 +36,9 @@ public class Clients {
     @Column
     private Integer personal_number;
 
+    @Column(nullable = true)
+    private String agreement=null;
+
     @OneToMany(mappedBy = "Clients")
     private List<Registrations> Registrations;
 
@@ -104,6 +107,14 @@ public class Clients {
 
     public void setRegistrations(List<com.example.namu_darbas_nr_5_benas_luomanas.entities.Registrations> registrations) {
         this.Registrations = registrations;
+    }
+
+    public String getAgreement() {
+        return agreement;
+    }
+
+    public void setAgreement(String agreement) {
+        this.agreement = agreement;
     }
 
     @Override
