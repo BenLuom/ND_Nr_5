@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="Clients")
+@Table(name="clients")
 public class Clients {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -101,9 +101,9 @@ public class Clients {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", surname=" + surname + '\'' +
-                ", surname=" + email + '\'' +
-                ", surname=" + phone + '\'' +
-                ", surname=" + personal_number +
+                ", email=" + email + '\'' +
+                ", phone=" + phone + '\'' +
+                ", personal_number=" + personal_number +
                 '}';
     }
 }

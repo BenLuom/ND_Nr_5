@@ -1,10 +1,10 @@
-package com.example.namu_darbas_nr_5_benas_luomanas.entities;
+ package com.example.namu_darbas_nr_5_benas_luomanas.entities;
 
 import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="Workouts")
+@Table(name="workouts")
 public class Workouts {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,10 +17,10 @@ public class Workouts {
     private String date;
 
     @Column
-    private String places;
+    private Integer places;
 
     @Column
-    private Integer location;
+    private String location;
 
     @OneToMany(mappedBy = "Workouts")
     private List<Registrations> Registrations;
@@ -28,13 +28,11 @@ public class Workouts {
     public Workouts() {
     }
 
-    public Workouts(Integer id, String name, String date, String places, Integer location, List<com.example.namu_darbas_nr_5_benas_luomanas.entities.Registrations> registrations) {
-        this.id = id;
+    public Workouts(String name, String date, Integer places, String location) {
         this.name = name;
         this.date = date;
         this.places = places;
         this.location = location;
-        Registrations = registrations;
     }
 
     public Integer getId() {
@@ -61,19 +59,19 @@ public class Workouts {
         this.date = date;
     }
 
-    public String getPlaces() {
+    public Integer getPlaces() {
         return places;
     }
 
-    public void setPlaces(String places) {
+    public void setPlaces(Integer places) {
         this.places = places;
     }
 
-    public Integer getLocation() {
+    public String getLocation() {
         return location;
     }
 
-    public void setLocation(Integer location) {
+    public void setLocation(String location) {
         this.location = location;
     }
 
